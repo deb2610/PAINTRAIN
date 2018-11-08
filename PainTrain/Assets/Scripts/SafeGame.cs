@@ -16,12 +16,17 @@ public class SafeGame : MonoBehaviour {
     public GameState CurrentState { get; private set; }
     public float AngleAwayFromCorrect { get; private set; }
 
+    public GameObject redLight;
+    public GameObject greenLight;
+    public GameObject offLight;
+
     public int numDialTicks;
     public float sensitivity = 1.0f;
     public bool useMotionControls = false; // :P
     public bool useMouse = false;          // For testing on a computer
     public float gameTolerance = 5.0f;     // How many degrees off is allowed;
     public float buzzDuration = 0.1f;       // Seconds the phone should vibrate for
+    public int tickTolerance = 3;
 
     private float CurrentGoal;
 
@@ -30,14 +35,19 @@ public class SafeGame : MonoBehaviour {
     private Camera Camera;
     private Vector2 DialPosition;
     private int index = 0;
+    private bool InputActive = true;
 
     // Use this for initialization
     void Start () {
         // Randomize the safe combo
+        float tenPercent = numDialTicks / 10;
         SafeCombo = new int[3];
-        SafeCombo[0] = (int)(Random.value * (numDialTicks - 15)) + 15;  // Let's keep the first number always past 15
-        SafeCombo[1] = (int)(Random.value * numDialTicks);
-        SafeCombo[2] = (int)(Random.value * numDialTicks);
+        SafeCombo[0] = mod((int)(Random.Range(tenPercent, numDialTicks - tenPercent)), numDialTicks);
+        int nextOffset = (int)(Random.Range(tenPercent, numDialTicks - 2 * tenPercent));
+        SafeCombo[1] = mod((SafeCombo[0] + nextOffset), numDialTicks);
+        nextOffset = (int)(Random.Range(tenPercent, numDialTicks - 2 * tenPercent));
+        SafeCombo[2] = mod((SafeCombo[1] - nextOffset), numDialTicks);
+        Debug.Log("SafeCombo: [ " + SafeCombo[0] + ", " + SafeCombo[1] + ", " + SafeCombo[2] + " ]");
 
         // Check hardware 
         Gyro = Input.gyro;
@@ -54,7 +64,10 @@ public class SafeGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        ProcessInput();
+        if (InputActive)
+        {
+            ProcessInput();
+        }
         CheckState();
 	}
 
@@ -97,16 +110,91 @@ public class SafeGame : MonoBehaviour {
     
     void CheckState()
     {
-        float currentRot = clampAngle(transform.eulerAngles.z - 90);
+        float currentRot = ClampAngle(transform.eulerAngles.z - 90);
 
         AngleAwayFromCorrect = Mathf.Abs(CurrentGoal - currentRot);
         
-        if (AngleAwayFromCorrect < gameTolerance)
+        // Check success
+        if (GetCurrentTick() == SafeCombo[index])
         {
-            Debug.Log("Buzz: " + transform.eulerAngles.z);
+            Debug.Log("Buzz: " + GetCurrentTick());
             Vibrate(buzzDuration);
-            CurrentGoal = TickToRotation(SafeCombo[++index % 3]);
+            CurrentGoal = TickToRotation(SafeCombo[mod(++index, 3)]);
+
+            // Advance Game State
+            if (index == 1)
+            {
+                CurrentState = GameState.secondNumber;
+                Debug.Log("Current Goal: " + SafeCombo[index]);
+            }
+            if (index == 2)
+            {
+                CurrentState = GameState.thirdNumber;
+                Debug.Log("Current Goal: " + SafeCombo[index]);
+            }
+            if (index > 2)
+            {
+                SucceedGame();
+            }
         }
+
+        // Check Fail
+        if(CurrentState == GameState.firstNumber)
+        {
+            int tickFailure = SafeCombo[0] - 3 * tickTolerance;
+            int currentTick = GetCurrentTick();
+            if(currentTick > 10 && currentTick <= tickFailure)
+            {
+                Debug.Log("Failed at first stage");
+                Debug.Log("Current Tick: " + currentTick);
+                Debug.Log("tickFailure: " + tickFailure);
+                Debug.Log("Goal: " + SafeCombo[0]);
+                FailGame();
+            }
+        }
+        else if(CurrentState == GameState.secondNumber)
+        {
+            int tickFailure = SafeCombo[0] - tickTolerance;
+            int currentTick = GetCurrentTick();
+            if(currentTick <= tickFailure && currentTick > SafeCombo[1])
+            {
+                Debug.Log("Failed at second stage");
+                Debug.Log("Current Tick: " + currentTick);
+                Debug.Log("tickFailure: " + tickFailure);
+                Debug.Log("Goal: " + SafeCombo[1]);
+                FailGame();
+            }
+        } 
+        else if (CurrentState == GameState.thirdNumber)
+        {
+            int tickFailure = SafeCombo[1] + tickTolerance;
+            int currentTick = GetCurrentTick();
+            if (currentTick >= tickFailure && currentTick < SafeCombo[2])
+            {
+                Debug.Log("Failed at third stage");
+                Debug.Log("Current Tick: " + currentTick);
+                Debug.Log("tickFailure: " + tickFailure);
+                Debug.Log("Goal: " + SafeCombo[2]);
+                FailGame();
+            }
+        }
+    }
+
+    void FailGame()
+    {
+        offLight.SetActive(false);
+        redLight.SetActive(true);
+        CurrentState = GameState.failed;
+        InputActive = false;
+        Vibrate(1.0f);
+    }
+
+    void SucceedGame()
+    {
+        offLight.SetActive(false);
+        greenLight.SetActive(true);
+        CurrentState = GameState.completed;
+        InputActive = false;
     }
 
     float TickToRotation(int tick)
@@ -114,9 +202,9 @@ public class SafeGame : MonoBehaviour {
         return (float)tick / numDialTicks * 360 - 90;
     }
 
-    float clampAngle(float anyAngle)
+    float ClampAngle(float anyAngle)
     {
-        return anyAngle % 360;
+        return mod(anyAngle, 360);
     }
 
     // Unity by default doesn't do this, so we're gonna do it ourselves
@@ -136,4 +224,25 @@ public class SafeGame : MonoBehaviour {
         vibratorClass.Dispose();
         vibratorService.Dispose();
     }
+
+    // A public method in case we want to display the ticks on the screen. 
+    public int GetCurrentTick()
+    {
+        float currentRot = ClampAngle(transform.eulerAngles.z);
+        int tick = (int)(currentRot / 360.0f * numDialTicks);
+        return tick;
+    }
+
+    #region WTF C#
+    int mod(int a, int b)
+    {
+        int m = a - (int)(b * Mathf.Floor((float)a / b));
+        return m;
+    }
+    
+    float mod(float a, float b)
+    {
+        return a - (b * Mathf.Floor(a / b));
+    }
+    #endregion
 }
