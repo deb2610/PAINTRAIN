@@ -9,9 +9,13 @@ public class SafeGame : MonoBehaviour {
         firstNumber,
         secondNumber,
         thirdNumber,
-        failed,
-        completed
+        failing,
+        completed,
+        failed
     }
+
+    public GameObject timerGameObject;
+    private Timer Timer;
 
     public GameState CurrentState { get; private set; }
     public float AngleAwayFromCorrect { get; private set; }
@@ -30,6 +34,7 @@ public class SafeGame : MonoBehaviour {
     public int tickTolerance = 3;
     public float holdWinTime = 0.25f;       // A couple of milliseconds so that the player can't just win the last section by spinning really quickly
     public float penaltyTime = 2.0f;        // Seconds to penalize the player
+    public float gameTime = 30.0f;          // How many seconds the player has to unlock the safe
 
     private float CurrentGoal;
 
@@ -61,13 +66,14 @@ public class SafeGame : MonoBehaviour {
         Gyro = Input.gyro;
         Gyro.enabled = true;
 
-        //Debug.Log("Start tick: " + SafeCombo[0]);
-
         CurrentGoal = TickToRotation(SafeCombo[0]);
-        //Debug.Log("Current Goal: " + SafeCombo[0]);
         CurrentState = GameState.firstNumber;
         Camera = Camera.main;
         DialPosition = Camera.WorldToScreenPoint(transform.position);
+
+        Timer = timerGameObject.GetComponent<Timer>();
+        Timer.Set(gameTime);
+        StartGame(); // We'll remove this eventually and have a game launcher
     }
 	
 	// Update is called once per frame
@@ -76,7 +82,7 @@ public class SafeGame : MonoBehaviour {
         {
             ProcessInput();
         }
-        if (!HandleFailedGameReset())
+        if (CurrentState != GameState.failed && !HandleFailedGameReset())
         {
             CheckState();
         }
@@ -121,6 +127,13 @@ public class SafeGame : MonoBehaviour {
     
     void CheckState()
     {
+        // If the player has failed, then the game should stop
+        if (CurrentState == GameState.failed)
+        {
+            InputActive = false;
+            return;
+        }
+
         float currentRot = ClampAngle(transform.eulerAngles.z - 90);
 
         AngleAwayFromCorrect = Mathf.Abs(CurrentGoal - currentRot);
@@ -128,7 +141,7 @@ public class SafeGame : MonoBehaviour {
         // Check success
         if (winReached > 0)
         {
-            if (CurrentState != GameState.failed && Time.time - holdWinTime > winReached)
+            if (CurrentState != GameState.failing && Time.time - holdWinTime > winReached)
             {
                 // Make sure the game hasn't been failed and that the time has been waited
                 SucceedGame();
@@ -161,7 +174,11 @@ public class SafeGame : MonoBehaviour {
         
 
         // Check Fail
-        if (CurrentState == GameState.firstNumber)
+        if (Timer.IsFinished() && winReached < 0)
+        {
+            EndGame();
+        }
+        else if (CurrentState == GameState.firstNumber)
         {
             int tickFailure = 3 * tickTolerance;     // In the first stage, let the player accidentally move left a little
             int tickGoalTol = mod(SafeCombo[0] - tickTolerance, numDialTicks);
@@ -202,7 +219,8 @@ public class SafeGame : MonoBehaviour {
 
     bool HandleFailedGameReset()
     {
-        if (CurrentState == GameState.failed)
+        Debug.Log(CurrentState);
+        if (CurrentState == GameState.failing)
         {
             transform.eulerAngles = new Vector3(0, 0, Mathf.Lerp(rotationAtFail, 0, (Time.time - timeOfLastFail) / penaltyTime));
             if (Time.time - timeOfLastFail > penaltyTime)
@@ -223,9 +241,19 @@ public class SafeGame : MonoBehaviour {
         rotationAtFail = transform.eulerAngles.z;
         offLight.SetActive(false);
         redLight.SetActive(true);
-        CurrentState = GameState.failed;
+        CurrentState = GameState.failing;
         InputActive = false;
-        Vibrate(1.0f);
+        Vibrate(failBuzzDuration);
+    }
+
+    void EndGame()
+    {
+        offLight.SetActive(false);
+        redLight.SetActive(true);
+        CurrentState = GameState.failed;
+        Debug.Log(CurrentState);
+        InputActive = false;
+        Vibrate(failBuzzDuration);
     }
 
     void SucceedGame()
@@ -234,6 +262,7 @@ public class SafeGame : MonoBehaviour {
         greenLight.SetActive(true);
         CurrentState = GameState.completed;
         InputActive = false;
+        Timer.Pause();
     }
 
     float TickToRotation(int tick)
@@ -326,6 +355,11 @@ public class SafeGame : MonoBehaviour {
         float currentRot = ClampAngle(transform.eulerAngles.z);
         int tick = (int)(currentRot / 360.0f * numDialTicks);
         return tick;
+    }
+
+    public void StartGame()
+    {
+        Timer.Go();
     }
 
     #region WTF C#
