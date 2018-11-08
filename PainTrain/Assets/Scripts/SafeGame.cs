@@ -22,11 +22,14 @@ public class SafeGame : MonoBehaviour {
 
     public int numDialTicks;
     public float sensitivity = 1.0f;
-    public bool useMotionControls = false; // :P
-    public bool useMouse = false;          // For testing on a computer
-    public float gameTolerance = 5.0f;     // How many degrees off is allowed;
-    public float buzzDuration = 0.1f;       // Seconds the phone should vibrate for
+    public bool useMotionControls = false;  // :P
+    public bool useMouse = false;           // For testing on a computer
+    public float gameTolerance = 5.0f;      // How many degrees off is allowed;
+    public float buzzDuration = 0.1f;       // Seconds the phone should vibrate for success
+    public float failBuzzDuration = 0.5f;   // Seconds the phone should vibrate for fail
     public int tickTolerance = 3;
+    public float holdWinTime = 0.25f;       // A couple of milliseconds so that the player can't just win the last section by spinning really quickly
+    public float penaltyTime = 2.0f;        // Seconds to penalize the player
 
     private float CurrentGoal;
 
@@ -36,12 +39,15 @@ public class SafeGame : MonoBehaviour {
     private Vector2 DialPosition;
     private int index = 0;
     private bool InputActive = true;
+    private float winReached = -1.0f;       // The time the player gets to the final tick
+    private float timeOfLastFail = -10.0f;
+    private float rotationAtFail;
 
     // Use this for initialization
     void Start () {
         // Randomize the safe combo
         float tenPercent = numDialTicks / 10;
-        SafeCombo = new int[3];
+        SafeCombo = new int[4];
         SafeCombo[0] = mod((int)(Random.Range(tenPercent, numDialTicks - tenPercent)), numDialTicks);
         int nextOffset = (int)(Random.Range(tenPercent, numDialTicks - 2 * tenPercent));
         SafeCombo[1] = mod((SafeCombo[0] + nextOffset), numDialTicks);
@@ -49,14 +55,16 @@ public class SafeGame : MonoBehaviour {
         SafeCombo[2] = mod((SafeCombo[1] - nextOffset), numDialTicks);
         Debug.Log("SafeCombo: [ " + SafeCombo[0] + ", " + SafeCombo[1] + ", " + SafeCombo[2] + " ]");
 
+        SafeCombo[3] = 2 * numDialTicks; // Makes it impossible while preventing index out of bounds errors
+
         // Check hardware 
         Gyro = Input.gyro;
         Gyro.enabled = true;
 
-        Debug.Log("Start tick: " + SafeCombo[0]);
+        //Debug.Log("Start tick: " + SafeCombo[0]);
 
         CurrentGoal = TickToRotation(SafeCombo[0]);
-        Debug.Log("Current Goal: " + CurrentGoal);
+        //Debug.Log("Current Goal: " + SafeCombo[0]);
         CurrentState = GameState.firstNumber;
         Camera = Camera.main;
         DialPosition = Camera.WorldToScreenPoint(transform.position);
@@ -68,7 +76,10 @@ public class SafeGame : MonoBehaviour {
         {
             ProcessInput();
         }
-        CheckState();
+        if (!HandleFailedGameReset())
+        {
+            CheckState();
+        }
 	}
 
     void ProcessInput()
@@ -113,9 +124,16 @@ public class SafeGame : MonoBehaviour {
         float currentRot = ClampAngle(transform.eulerAngles.z - 90);
 
         AngleAwayFromCorrect = Mathf.Abs(CurrentGoal - currentRot);
-        
+
         // Check success
-        if (GetCurrentTick() == SafeCombo[index])
+        if (winReached > 0)
+        {
+            if (CurrentState != GameState.failed && Time.time - holdWinTime > winReached)
+            {
+                // Make sure the game hasn't been failed and that the time has been waited
+                SucceedGame();
+            }
+        } else if (GetCurrentTick() == SafeCombo[index])
         {
             Debug.Log("Buzz: " + GetCurrentTick());
             Vibrate(buzzDuration);
@@ -125,63 +143,84 @@ public class SafeGame : MonoBehaviour {
             if (index == 1)
             {
                 CurrentState = GameState.secondNumber;
-                Debug.Log("Current Goal: " + SafeCombo[index]);
+                //Debug.Log("Current Goal: " + SafeCombo[index]);
             }
             if (index == 2)
             {
                 CurrentState = GameState.thirdNumber;
-                Debug.Log("Current Goal: " + SafeCombo[index]);
+                //Debug.Log("Current Goal: " + SafeCombo[index]);
             }
             if (index > 2)
             {
-                SucceedGame();
+                if (winReached < 0)
+                {
+                    winReached = Time.time;
+                }
             }
         }
+        
 
         // Check Fail
-        if(CurrentState == GameState.firstNumber)
+        if (CurrentState == GameState.firstNumber)
         {
-            int tickFailure = SafeCombo[0] - 3 * tickTolerance;
+            int tickFailure = 3 * tickTolerance;     // In the first stage, let the player accidentally move left a little
+            int tickGoalTol = mod(SafeCombo[0] - tickTolerance, numDialTicks);
             int currentTick = GetCurrentTick();
-            if(currentTick > 10 && currentTick <= tickFailure)
+            if (!IsInRange(tickFailure, tickGoalTol, currentTick, true))
             {
-                Debug.Log("Failed at first stage");
-                Debug.Log("Current Tick: " + currentTick);
-                Debug.Log("tickFailure: " + tickFailure);
-                Debug.Log("Goal: " + SafeCombo[0]);
+                //Debug.Log("Failed at first stage");
+                //Debug.Log("Goal: " + SafeCombo[0]);
                 FailGame();
             }
         }
         else if(CurrentState == GameState.secondNumber)
         {
-            int tickFailure = SafeCombo[0] - tickTolerance;
+            int tickFailure = mod(SafeCombo[0] - tickTolerance, numDialTicks);
+            int tickGoalTol = mod(SafeCombo[1] + tickTolerance, numDialTicks);
             int currentTick = GetCurrentTick();
-            if(currentTick <= tickFailure && currentTick > SafeCombo[1])
+            if (!IsInRange(tickFailure, tickGoalTol, currentTick, false))
             {
-                Debug.Log("Failed at second stage");
-                Debug.Log("Current Tick: " + currentTick);
-                Debug.Log("tickFailure: " + tickFailure);
-                Debug.Log("Goal: " + SafeCombo[1]);
+                //Debug.Log("Failed at second stage");
+                //Debug.Log("Goal: " + SafeCombo[1]);
                 FailGame();
             }
         } 
         else if (CurrentState == GameState.thirdNumber)
         {
-            int tickFailure = SafeCombo[1] + tickTolerance;
+            int tickFailure = mod(SafeCombo[1] + tickTolerance, numDialTicks);
+            int overshootTick = mod(SafeCombo[2] - tickTolerance, numDialTicks);
             int currentTick = GetCurrentTick();
-            if (currentTick >= tickFailure && currentTick < SafeCombo[2])
+
+            if (!IsInRange(tickFailure, overshootTick, currentTick, true))
             {
-                Debug.Log("Failed at third stage");
-                Debug.Log("Current Tick: " + currentTick);
-                Debug.Log("tickFailure: " + tickFailure);
-                Debug.Log("Goal: " + SafeCombo[2]);
+                //Debug.Log("Failed at third stage");
+                //Debug.Log("Goal: " + SafeCombo[2]);
                 FailGame();
             }
         }
     }
 
+    bool HandleFailedGameReset()
+    {
+        if (CurrentState == GameState.failed)
+        {
+            transform.eulerAngles = new Vector3(0, 0, Mathf.Lerp(rotationAtFail, 0, (Time.time - timeOfLastFail) / penaltyTime));
+            if (Time.time - timeOfLastFail > penaltyTime)
+            {
+                Debug.Log("Penalty time complete");
+                Reset();
+                transform.eulerAngles = Vector3.zero;
+                InputActive = true;
+            }
+            return true;
+        }
+        return false;
+    }
+
     void FailGame()
     {
+        timeOfLastFail = Time.time;
+        rotationAtFail = transform.eulerAngles.z;
         offLight.SetActive(false);
         redLight.SetActive(true);
         CurrentState = GameState.failed;
@@ -223,6 +262,62 @@ public class SafeGame : MonoBehaviour {
         ca.Dispose();
         vibratorClass.Dispose();
         vibratorService.Dispose();
+    }
+
+    bool IsInRange(int lastTick, int nextTick, int currentTick, bool clockwise)
+    {
+        bool res;
+        // Get rid of having to move past 0
+        if (clockwise)
+        {
+            // next tick should be "lower" than the last tick
+            if (nextTick > lastTick)
+            {
+                // We have to cross zero to get here. 
+                res = (currentTick < lastTick)     // current is between 0 and last tick
+                    ^ (currentTick > nextTick);     // current is between numDialTicks and nextTick
+            }
+            else
+            {
+                // We don't have to cross zero
+                res = (currentTick < lastTick)
+                    && (currentTick > nextTick);
+            }
+        }
+        else
+        {
+            // next tick should be "higher" than the last tick
+            if (nextTick < lastTick)
+            {
+                // We have to cross zero to get here
+                res = currentTick > lastTick       // current is between last and numDialTicks
+                    ^  currentTick < nextTick;      // current is between 0 and nextTick
+            }
+            else
+            {
+                // We don't have to cross zero
+                res = currentTick > lastTick
+                    && currentTick < nextTick;
+            }
+        }
+        //if (!res)
+        //{
+        //    Debug.Log("current: " + currentTick);
+        //    Debug.Log("last: " + lastTick);
+        //    Debug.Log("next: " + nextTick);
+        //    Debug.Log(clockwise ? "clockwise" : "counterclockwise");
+        //}
+        return res;
+    }
+
+    public void Reset()
+    {
+        CurrentGoal = TickToRotation(SafeCombo[0]);
+        CurrentState = GameState.firstNumber;
+        offLight.SetActive(true);
+        redLight.SetActive(false);
+        greenLight.SetActive(false);
+        index = 0;
     }
 
     // A public method in case we want to display the ticks on the screen. 
