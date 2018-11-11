@@ -50,29 +50,17 @@ public class SafeGame : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        // Randomize the safe combo
-        float tenPercent = numDialTicks / 10;
-        SafeCombo = new int[4];
-        SafeCombo[0] = mod((int)(Random.Range(tenPercent, numDialTicks - tenPercent)), numDialTicks);
-        int nextOffset = (int)(Random.Range(tenPercent, numDialTicks - 2 * tenPercent));
-        SafeCombo[1] = mod((SafeCombo[0] + nextOffset), numDialTicks);
-        nextOffset = (int)(Random.Range(tenPercent, numDialTicks - 2 * tenPercent));
-        SafeCombo[2] = mod((SafeCombo[1] - nextOffset), numDialTicks);
-        Debug.Log("SafeCombo: [ " + SafeCombo[0] + ", " + SafeCombo[1] + ", " + SafeCombo[2] + " ]");
-
-        SafeCombo[3] = 2 * numDialTicks; // Makes it impossible while preventing index out of bounds errors
-
+        
         // Check hardware 
         Gyro = Input.gyro;
         Gyro.enabled = true;
 
-        CurrentGoal = TickToRotation(SafeCombo[0]);
-        CurrentState = GameState.firstNumber;
         Camera = Camera.main;
         DialPosition = Camera.WorldToScreenPoint(transform.position);
 
         Timer = timerGameObject.GetComponent<Timer>();
-        Timer.Set(gameTime);
+
+        NewGame();
         StartGame(); // We'll remove this eventually and have a game launcher
     }
 	
@@ -84,7 +72,10 @@ public class SafeGame : MonoBehaviour {
         }
         if (CurrentState != GameState.failed && !HandleFailedGameReset())
         {
-            CheckState();
+            if (CurrentState != GameState.failing)
+            {
+                CheckState();
+            }
         }
 	}
 
@@ -219,10 +210,13 @@ public class SafeGame : MonoBehaviour {
 
     bool HandleFailedGameReset()
     {
-        Debug.Log(CurrentState);
         if (CurrentState == GameState.failing)
         {
-            transform.eulerAngles = new Vector3(0, 0, Mathf.Lerp(rotationAtFail, 0, (Time.time - timeOfLastFail) / penaltyTime));
+            float timeIntoPenalty = Time.time - timeOfLastFail;
+            if (timeOfLastFail > 1.0f)
+            {
+                transform.eulerAngles = new Vector3(0, 0, Mathf.Lerp(rotationAtFail, 0,  2 * (timeIntoPenalty - 1.0f) / penaltyTime));
+            }
             if (Time.time - timeOfLastFail > penaltyTime)
             {
                 Debug.Log("Penalty time complete");
@@ -251,7 +245,6 @@ public class SafeGame : MonoBehaviour {
         offLight.SetActive(false);
         redLight.SetActive(true);
         CurrentState = GameState.failed;
-        Debug.Log(CurrentState);
         InputActive = false;
         Vibrate(failBuzzDuration);
     }
@@ -349,6 +342,30 @@ public class SafeGame : MonoBehaviour {
         index = 0;
     }
 
+    public void NewGame()
+    {
+        // Randomize the safe combo. To balance things out, the most the player should have to turn the 
+        // dial from step to step should be 60% of the dial. 
+        float tenPercent = numDialTicks / 10;
+        SafeCombo = new int[4];
+        SafeCombo[0] = mod((int)(Random.Range(4 * tenPercent, numDialTicks - tenPercent)), numDialTicks);
+        int nextOffset = (int)(Random.Range(tenPercent, numDialTicks - 4 * tenPercent));
+        SafeCombo[1] = mod((SafeCombo[0] + nextOffset), numDialTicks);
+        nextOffset = (int)(Random.Range(tenPercent, numDialTicks - 4 * tenPercent));
+        SafeCombo[2] = mod((SafeCombo[1] - nextOffset), numDialTicks);
+        Debug.Log("SafeCombo: [ " + SafeCombo[0] + ", " + SafeCombo[1] + ", " + SafeCombo[2] + " ]");
+
+        SafeCombo[3] = 2 * numDialTicks; // impossible number to reach that prevents index out of bounds errors
+
+        CurrentGoal = TickToRotation(SafeCombo[0]);
+        CurrentState = GameState.firstNumber;
+        offLight.SetActive(true);
+        redLight.SetActive(false);
+        greenLight.SetActive(false);
+        index = 0;
+        Timer.Set(gameTime);
+    }
+
     // A public method in case we want to display the ticks on the screen. 
     public int GetCurrentTick()
     {
@@ -359,10 +376,12 @@ public class SafeGame : MonoBehaviour {
 
     public void StartGame()
     {
+        InputActive = true;
         Timer.Go();
     }
 
     #region WTF C#
+    // the % operator is a remainter operator, not a true modulus. Things like -3 % 5 = -3, not 2 as expected
     int mod(int a, int b)
     {
         int m = a - (int)(b * Mathf.Floor((float)a / b));
