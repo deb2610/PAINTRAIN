@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SafeGame : MonoBehaviour {
 
@@ -13,6 +14,9 @@ public class SafeGame : MonoBehaviour {
         completed,
         failed
     }
+
+    public Button startButton;
+    public GameObject instructionCanvas;
 
     public GameObject timerGameObject;
     private Timer Timer;
@@ -50,7 +54,8 @@ public class SafeGame : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
+        startButton.onClick.AddListener(StartGame);
+
         // Check hardware 
         Gyro = Input.gyro;
         Gyro.enabled = true;
@@ -61,7 +66,6 @@ public class SafeGame : MonoBehaviour {
         Timer = timerGameObject.GetComponent<Timer>();
 
         NewGame();
-        StartGame(); // We'll remove this eventually and have a game launcher
     }
 	
 	// Update is called once per frame
@@ -376,8 +380,23 @@ public class SafeGame : MonoBehaviour {
 
     public void StartGame()
     {
+        instructionCanvas.SetActive(false);
         InputActive = true;
         Timer.Go();
+    }
+
+    // Use this method to set active the game objects that need to be set active but are shared across minigames
+    void OnEnable()
+    {
+        timerGameObject.SetActive(true);
+        Timer = timerGameObject.GetComponent<Timer>();
+        instructionCanvas.SetActive(true);
+    }
+
+    void OnDisable()
+    {
+        if (timerGameObject != null)
+            timerGameObject.SetActive(false);
     }
 
     #region WTF C#
