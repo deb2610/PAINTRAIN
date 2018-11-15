@@ -18,6 +18,9 @@ public class SafeGame : MonoBehaviour {
     public Button startButton;
     public GameObject instructionCanvas;
 
+    public GameObject minigameLauncherObject;
+    private MinigameLauncher minigameLauncher;
+
     public GameObject timerGameObject;
     private Timer Timer;
 
@@ -39,6 +42,7 @@ public class SafeGame : MonoBehaviour {
     public float holdWinTime = 0.00f;       // A couple of milliseconds so that the player can't just win the last section by spinning really quickly
     public float penaltyTime = 2.0f;        // Seconds to penalize the player
     public float gameTime = 30.0f;          // How many seconds the player has to unlock the safe
+    public float gameEndDelay = 3.0f;       // Time between the game ending and the home button reappearing
 
     private float CurrentGoal;
 
@@ -48,13 +52,14 @@ public class SafeGame : MonoBehaviour {
     private Vector2 DialPosition;
     private int index = 0;
     private bool InputActive = true;
-    private float winReached = -1.0f;       // The time the player gets to the final tick
+    private float gameComplete = -1.0f;       // The time the player gets to the final tick
     private float timeOfLastFail = -10.0f;
     private float rotationAtFail;
 
     // Use this for initialization
     void Start () {
         startButton.onClick.AddListener(StartGame);
+        minigameLauncher = minigameLauncherObject.GetComponent<MinigameLauncher>();
 
         // Check hardware 
         Gyro = Input.gyro;
@@ -81,6 +86,7 @@ public class SafeGame : MonoBehaviour {
                 CheckState();
             }
         }
+        HandleGameFinsihed();
 	}
 
     void ProcessInput()
@@ -154,6 +160,7 @@ public class SafeGame : MonoBehaviour {
             if (index > 2)
             {
                 SucceedGame();
+                gameComplete = Time.time;
                 return;
             }
         }
@@ -242,6 +249,7 @@ public class SafeGame : MonoBehaviour {
         CurrentState = GameState.failed;
         InputActive = false;
         Vibrate(failBuzzDuration);
+        gameComplete = Time.time;
     }
 
     void SucceedGame()
@@ -382,12 +390,23 @@ public class SafeGame : MonoBehaviour {
         timerGameObject.SetActive(true);
         Timer = timerGameObject.GetComponent<Timer>();
         instructionCanvas.SetActive(true);
+        transform.eulerAngles = Vector3.zero;
     }
 
     void OnDisable()
     {
         if (timerGameObject != null)
             timerGameObject.SetActive(false);
+    }
+
+    void HandleGameFinsihed()
+    {
+        if (CurrentState == GameState.failed || CurrentState == GameState.completed) {
+            if (Time.time - gameEndDelay > gameComplete)
+            {
+                minigameLauncher.ShowHomeButton();
+            }
+        }
     }
 
     #region WTF C#
