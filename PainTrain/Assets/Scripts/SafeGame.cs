@@ -36,7 +36,7 @@ public class SafeGame : MonoBehaviour {
     public float buzzDuration = 0.1f;       // Seconds the phone should vibrate for success
     public float failBuzzDuration = 0.5f;   // Seconds the phone should vibrate for fail
     public int tickTolerance = 3;
-    public float holdWinTime = 0.25f;       // A couple of milliseconds so that the player can't just win the last section by spinning really quickly
+    public float holdWinTime = 0.00f;       // A couple of milliseconds so that the player can't just win the last section by spinning really quickly
     public float penaltyTime = 2.0f;        // Seconds to penalize the player
     public float gameTime = 30.0f;          // How many seconds the player has to unlock the safe
 
@@ -123,7 +123,7 @@ public class SafeGame : MonoBehaviour {
     void CheckState()
     {
         // If the player has failed, then the game should stop
-        if (CurrentState == GameState.failed)
+        if (CurrentState == GameState.failed || CurrentState == GameState.failing)
         {
             InputActive = false;
             return;
@@ -134,14 +134,7 @@ public class SafeGame : MonoBehaviour {
         AngleAwayFromCorrect = Mathf.Abs(CurrentGoal - currentRot);
 
         // Check success
-        if (winReached > 0)
-        {
-            if (CurrentState != GameState.failing && Time.time - holdWinTime > winReached)
-            {
-                // Make sure the game hasn't been failed and that the time has been waited
-                SucceedGame();
-            }
-        } else if (GetCurrentTick() == SafeCombo[index])
+        if (GetCurrentTick() == SafeCombo[index])
         {
             Debug.Log("Buzz: " + GetCurrentTick());
             Vibrate(buzzDuration);
@@ -160,16 +153,14 @@ public class SafeGame : MonoBehaviour {
             }
             if (index > 2)
             {
-                if (winReached < 0)
-                {
-                    winReached = Time.time;
-                }
+                SucceedGame();
+                return;
             }
         }
         
 
         // Check Fail
-        if (Timer.IsFinished() && winReached < 0)
+        if (Timer.IsFinished())
         {
             EndGame();
         }
