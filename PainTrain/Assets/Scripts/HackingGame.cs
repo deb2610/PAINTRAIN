@@ -42,6 +42,7 @@ public class HackingGame : MonoBehaviour {
         sevenSeg.SetActive(true);
         Timer = sevenSeg.GetComponent<Timer>();
         SpawnSteps();
+        Timer.Go();
     }
     // Use this for initialization
     void Start () {
@@ -110,7 +111,7 @@ public class HackingGame : MonoBehaviour {
                     "Pipeline Decrypted! \n";
                 break;
             case 3:
-                choice1.text = "Disable Photinic Resonator";
+                choice1.text = "Disable Photonic Resonator";
                 choice2.text = "Activate Photonic Resonator";
                 monitorText.text = "{Awaiting Instructions}... \n \n" +
                     "Employee Scanner Cracked! \n" +
@@ -211,6 +212,9 @@ public class HackingGame : MonoBehaviour {
         monitorText.gameObject.SetActive(false);
         redLight.SetActive(true);
         loserCanvas.SetActive(true);
+        button1.SetActive(false);
+        button2.SetActive(false);
+        handheldText.SetActive(false);
         Timer.Stop();
     }
     public void Restart()

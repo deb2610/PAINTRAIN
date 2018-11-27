@@ -835,10 +835,10 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Select the correct instruction to send to the mainframe to bypass the security
-    authenticatory on the traincar door.\n\nSelecting the wrong option could alert
-    the autoritoes so think carefully before transmitting commands. \n\nBut dont think
-    to long or the antihacking software that protects the mainframe will close your
-    session.\n\nGood Luck!"
+    authenticator on the traincar door.\n\nSelecting the wrong option could alert
+    the authorities so think carefully before transmitting commands. \n\nBut don't
+    think too long or the antihacking software that protects the mainframe will close
+    your session.\n\nGood Luck!"
 --- !u!222 &484068207
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4090,7 +4090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1892543444
 RectTransform:
   m_ObjectHideFlags: 0
