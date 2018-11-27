@@ -6,14 +6,17 @@ using UnityEngine.UI;
 public class MinigameLauncher : MonoBehaviour {
 
     public Button safeCrackingButton;
+    public Button hackingButton;
     public Button homeButton;
     public GameObject safeGame;
+    public GameObject hackingGame;
     public GameObject appScreenCanvas;
 
 	// Use this for initialization
 	void Start () {
         homeButton.onClick.AddListener(GoHome);
         safeCrackingButton.onClick.AddListener(LaunchSafeGame);
+        hackingButton.onClick.AddListener(LaunchHackingGame);
 	}
 	
 	// Update is called once per frame
@@ -28,16 +31,25 @@ public class MinigameLauncher : MonoBehaviour {
         game.NewGame();
         HideAppScreen();
     }
+    void LaunchHackingGame()
+    {
+        hackingGame.SetActive(true);
+        //SafeGame game = safeGame.transform.Find("Dial").gameObject.GetComponent<SafeGame>();
+        //game.NewGame();
+        HideAppScreen();
+    }
 
-    void HideAppScreen()
+    public void HideAppScreen()
     {
         safeCrackingButton.gameObject.SetActive(false);
+        hackingButton.gameObject.SetActive(false);
         homeButton.gameObject.SetActive(false);
     }
 
     public void ShowAppScreen()
     {
         safeCrackingButton.gameObject.SetActive(true);
+        hackingButton.gameObject.SetActive(true);
         homeButton.gameObject.SetActive(false);
     }
 
@@ -49,6 +61,7 @@ public class MinigameLauncher : MonoBehaviour {
     void GoHome()
     {
         safeGame.SetActive(false);
+        hackingGame.SetActive(false);
         ShowAppScreen();
     }
 }
