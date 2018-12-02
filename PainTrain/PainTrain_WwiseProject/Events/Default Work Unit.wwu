@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" SchemaVersion="89">
 	<Events>
-		<WorkUnit Name="Default Work Unit" ID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Play_TItle_Event" ID="{444A836A-7E6A-41BD-8F97-4FD4388006A8}">
+					<ChildrenList>
+						<Action Name="" ID="{A3236E20-237C-414D-96CF-7EC0E2B8AA4B}" ShortID="254193088">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Pain Train- Delivery" ID="{D0BA8535-F670-49A2-8857-3ED29FD7C5C2}" WorkUnitID="{21A43F00-AA82-4614-8F5A-25CAAE4F382F}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_Title_Event" ID="{9D74CC13-763D-4A69-AC9B-F4E0367F636B}">
+					<ChildrenList>
+						<Action Name="" ID="{F2EFDC78-732C-45D2-8BD1-BF149CCD8D94}" ShortID="1030237147">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Pain Train- Delivery" ID="{D0BA8535-F670-49A2-8857-3ED29FD7C5C2}" WorkUnitID="{21A43F00-AA82-4614-8F5A-25CAAE4F382F}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
 	</Events>
 </WwiseDocument>

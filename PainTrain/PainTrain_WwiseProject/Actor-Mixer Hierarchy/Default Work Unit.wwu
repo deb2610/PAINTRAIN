@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{21A43F00-AA82-4614-8F5A-25CAAE4F382F}" SchemaVersion="89">
 	<AudioObjects>
-		<WorkUnit Name="Default Work Unit" ID="{21A43F00-AA82-4614-8F5A-25CAAE4F382F}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{21A43F00-AA82-4614-8F5A-25CAAE4F382F}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="Pain Train- Delivery" ID="{D0BA8535-F670-49A2-8857-3ED29FD7C5C2}" ShortID="380410128">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{87280BF2-8C03-4B61-8B91-38D227E4D141}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DF4552DF-D6CC-494F-8148-2C06AE4D53ED}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Pain Train- Delivery" ID="{24122C9D-BAAA-441E-A075-C007DF419EE8}" ShortID="794355071">
+							<Language>SFX</Language>
+							<AudioFile>Pain Train- Delivery.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Pain Train- Delivery" ID="{24122C9D-BAAA-441E-A075-C007DF419EE8}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
 	</AudioObjects>
 </WwiseDocument>

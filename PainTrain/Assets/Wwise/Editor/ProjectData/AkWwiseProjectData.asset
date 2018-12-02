@@ -11,14 +11,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2220a0dd26edd949a7ae4d0030cf61e, type: 3}
   m_Name: AkWwiseProjectData
   m_EditorClassIdentifier: 
-  AcousticTextureWwu: []
-  AuxBusWwu: []
-  BankWwu: []
-  EventWwu: []
-  RtpcWwu: []
-  StateWwu: []
-  SwitchWwu: []
-  TriggerWwu: []
-  ExpandedItems: []
+  AcousticTextureWwu:
+  - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: 93363d17f5bea94d8617ee423abc8a4b
+    m_lastTime: -8586578306700403507
+    List: []
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: df5245dfccd64f4981482c06ae4d53ed
+    m_lastTime: -8586578306701357436
+    List: []
+  BankWwu:
+  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: 6dc21f4e9a0ca740a4577f1598cdde5e
+    m_lastTime: -8586578230697418203
+    List:
+    - name: Main
+      guid: aecb1c663cd0514eb223f88c9aaa2062
+      id: 3161908922
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Main
+        ObjectType: 7
+      Path: Default Work Unit\Main
+  EventWwu:
+  - PhysicalPath: Events\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: 0ac231cf58f30b43ae934811fe5b6858
+    m_lastTime: -8586578230697749697
+    List:
+    - name: Play_TItle_Event
+      guid: 6a834a446a7ebd418f974fd4388006a8
+      id: 1000465501
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_TItle_Event
+        ObjectType: 3
+      Path: Default Work Unit\Play_TItle_Event
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Stop_Title_Event
+      guid: 13cc749d3d76694aac9bf4e0367f636b
+      id: 3355541963
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Stop_Title_Event
+        ObjectType: 3
+      Path: Default Work Unit\Stop_Title_Event
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+  RtpcWwu:
+  - PhysicalPath: Game Parameters\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: 3a8d12af09a698488a904ca672f28650
+    m_lastTime: -8586578306701623364
+    List: []
+  StateWwu:
+  - PhysicalPath: States\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: 09b2a3be3d5152459cd978b8948eab3d
+    m_lastTime: -8586578306700485705
+    List: []
+  SwitchWwu:
+  - PhysicalPath: Switches\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: 1d5bc4cf3bf6dc4dac9ae267335adb70
+    m_lastTime: -8586578306701141594
+    List: []
+  TriggerWwu:
+  - PhysicalPath: Triggers\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: a9d94db18520da489395a19b6ce2f0ce
+    m_lastTime: -8586578306701055957
+    List: []
+  ExpandedItems:
+  - /PainTrain_WwiseProject
+  - /PainTrain_WwiseProject/Events
+  - /PainTrain_WwiseProject/Events/Default Work Unit
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

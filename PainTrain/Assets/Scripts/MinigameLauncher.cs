@@ -24,12 +24,18 @@ public class MinigameLauncher : MonoBehaviour {
 		
 	}
 
+    void LaunchGameAKCallback()
+    {
+        AkSoundEngine.PostEvent("Stop_Title_Event", gameObject);
+    }
+
     void LaunchSafeGame()
     {
         safeGame.SetActive(true);
         SafeGame game = safeGame.transform.Find("Dial").gameObject.GetComponent<SafeGame>();
         game.NewGame();
         HideAppScreen();
+        LaunchGameAKCallback();
     }
     void LaunchHackingGame()
     {
@@ -37,6 +43,7 @@ public class MinigameLauncher : MonoBehaviour {
         //SafeGame game = safeGame.transform.Find("Dial").gameObject.GetComponent<SafeGame>();
         //game.NewGame();
         HideAppScreen();
+        LaunchGameAKCallback();
     }
 
     public void HideAppScreen()
