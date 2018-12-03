@@ -36,6 +36,7 @@ public class MinigameLauncher : MonoBehaviour {
         game.NewGame();
         HideAppScreen();
         LaunchGameAKCallback();
+        AkSoundEngine.PostEvent("Play_SafeCracking_Vertical", gameObject);
     }
     void LaunchHackingGame()
     {

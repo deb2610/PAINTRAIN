@@ -27,7 +27,7 @@ MonoBehaviour:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 6dc21f4e9a0ca740a4577f1598cdde5e
-    m_lastTime: -8586578230697418203
+    m_lastTime: -8586578043601677098
     List:
     - name: Main
       guid: aecb1c663cd0514eb223f88c9aaa2062
@@ -42,8 +42,44 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 0ac231cf58f30b43ae934811fe5b6858
-    m_lastTime: -8586578230697749697
+    m_lastTime: -8586578043838726277
     List:
+    - name: Play_Safe___Lose
+      guid: 6bddfe599b378e4aa73d08dd085e4c78
+      id: 2335830713
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Safe___Lose
+        ObjectType: 3
+      Path: Default Work Unit\Play_Safe___Lose
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Play_Safe___Win
+      guid: b032f2105a19d34ca3c4dc20b1ed1f14
+      id: 551594628
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Safe___Win
+        ObjectType: 3
+      Path: Default Work Unit\Play_Safe___Win
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Play_SafeCracking_Vertical
+      guid: c7049e6450617e4e984e71a5d7d31717
+      id: 1146097364
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_SafeCracking_Vertical
+        ObjectType: 3
+      Path: Default Work Unit\Play_SafeCracking_Vertical
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: Play_TItle_Event
       guid: 6a834a446a7ebd418f974fd4388006a8
       id: 1000465501
@@ -72,8 +108,26 @@ MonoBehaviour:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 3a8d12af09a698488a904ca672f28650
-    m_lastTime: -8586578306701623364
-    List: []
+    m_lastTime: -8586578081679098232
+    List:
+    - name: SafeAngleDistance
+      guid: 77ddb85ba5fed44282e3e96a74754722
+      id: 4122000434
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SafeAngleDistance
+        ObjectType: 13
+      Path: Default Work Unit\SafeAngleDistance
+    - name: SafeState
+      guid: 6f5bef289bd4a64cab2e1bbce47449bf
+      id: 3111621141
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SafeState
+        ObjectType: 13
+      Path: Default Work Unit\SafeState
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
@@ -96,5 +150,7 @@ MonoBehaviour:
   - /PainTrain_WwiseProject
   - /PainTrain_WwiseProject/Events
   - /PainTrain_WwiseProject/Events/Default Work Unit
+  - /PainTrain_WwiseProject/SoundBanks
+  - /PainTrain_WwiseProject/SoundBanks/Default Work Unit
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

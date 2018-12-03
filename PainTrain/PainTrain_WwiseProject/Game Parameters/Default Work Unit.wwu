@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{AF128D3A-A609-4898-8A90-4CA672F28650}" SchemaVersion="89">
 	<GameParameters>
-		<WorkUnit Name="Default Work Unit" ID="{AF128D3A-A609-4898-8A90-4CA672F28650}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{AF128D3A-A609-4898-8A90-4CA672F28650}" PersistMode="Standalone">
+			<ChildrenList>
+				<GameParameter Name="SafeState" ID="{28EF5B6F-D49B-4CA6-AB2E-1BBCE47449BF}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+						<Property Name="Max" Type="Real64" Value="5"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="SafeAngleDistance" ID="{5BB8DD77-FEA5-42D4-82E3-E96A74754722}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+						<Property Name="Max" Type="Real64" Value="180"/>
+						<Property Name="Min" Type="Real64" Value="-180"/>
+					</PropertyList>
+				</GameParameter>
+			</ChildrenList>
+		</WorkUnit>
 	</GameParameters>
 </WwiseDocument>

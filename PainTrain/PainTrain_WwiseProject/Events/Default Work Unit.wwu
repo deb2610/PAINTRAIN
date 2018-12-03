@@ -31,6 +31,68 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_SafeCracking_Vertical" ID="{649E04C7-6150-4E7E-984E-71A5D7D31717}">
+					<ChildrenList>
+						<Action Name="" ID="{EC597465-05C8-4A5B-B0D9-A2730D2A6022}" ShortID="583717751">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SafeCracking Vertical Mix Container" ID="{F3BE1B31-D3F7-4DDE-8F49-944A8ECCB914}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Safe___Win" ID="{10F232B0-195A-4CD3-A3C4-DC20B1ED1F14}">
+					<ChildrenList>
+						<Action Name="" ID="{7D1B1718-5AE4-4B60-997F-5BA62FC7C77D}" ShortID="606505236">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SafeCracking Vertical Mix Container" ID="{F3BE1B31-D3F7-4DDE-8F49-944A8ECCB914}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{BE08AB56-EA75-4C59-BA81-0FBD69F73252}" ShortID="120433244">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Safe - Win" ID="{D5DD5652-7A49-4CA3-96D7-A4AB525D2756}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Safe___Lose" ID="{59FEDD6B-379B-4A8E-A73D-08DD085E4C78}">
+					<ChildrenList>
+						<Action Name="" ID="{47A137C0-160F-43E8-AD5E-88F7103C74AF}" ShortID="21022521">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SafeCracking Vertical Mix Container" ID="{F3BE1B31-D3F7-4DDE-8F49-944A8ECCB914}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{0894399C-4D72-4107-ADB2-49388C0C326D}" ShortID="455955314">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Safe - Lose" ID="{EEB5D8F4-2846-4A25-BC76-166EC16D9879}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

@@ -14,7 +14,16 @@
 							<Position X="1" Y="0"/>
 						</Module>
 					</ModuleList>
-					<RTPCValueList ShowAll="true"/>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="SafeAngleDistance" ID="{5BB8DD77-FEA5-42D4-82E3-E96A74754722}"/>
+							<Value>8.03452247292379E-312</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="SafeState" ID="{28EF5B6F-D49B-4CA6-AB2E-1BBCE47449BF}"/>
+							<Value>2.37734886059574</Value>
+						</RTPCValue>
+					</RTPCValueList>
 					<CurrentStateList ShowAll="true"/>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>

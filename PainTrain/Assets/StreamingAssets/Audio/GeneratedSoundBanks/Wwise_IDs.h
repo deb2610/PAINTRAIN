@@ -13,9 +13,18 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID PLAY_SAFE___LOSE = 2335830713U;
+        static const AkUniqueID PLAY_SAFE___WIN = 551594628U;
+        static const AkUniqueID PLAY_SAFECRACKING_VERTICAL = 1146097364U;
         static const AkUniqueID PLAY_TITLE_EVENT = 1000465501U;
         static const AkUniqueID STOP_TITLE_EVENT = 3355541963U;
     } // namespace EVENTS
+
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID SAFEANGLEDISTANCE = 4122000434U;
+        static const AkUniqueID SAFESTATE = 3111621141U;
+    } // namespace GAME_PARAMETERS
 
     namespace BANKS
     {

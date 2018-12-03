@@ -89,6 +89,12 @@ public class SafeGame : MonoBehaviour {
         HandleGameFinsihed();
 	}
 
+    void FixedUpdate()
+    {
+        AkSoundEngine.SetRTPCValue("SafeState", (float)CurrentState);
+        AkSoundEngine.SetRTPCValue("SafeAngleDistance", AngleAwayFromCorrect);
+    }
+
     void ProcessInput()
     {
         // Grab the Gyro rotation
@@ -240,6 +246,7 @@ public class SafeGame : MonoBehaviour {
         CurrentState = GameState.failing;
         InputActive = false;
         Vibrate(failBuzzDuration);
+        AkSoundEngine.PostEvent("Play_Safe__Lose", minigameLauncherObject);
     }
 
     void EndGame()
@@ -250,6 +257,7 @@ public class SafeGame : MonoBehaviour {
         InputActive = false;
         Vibrate(failBuzzDuration);
         gameComplete = Time.time;
+        AkSoundEngine.PostEvent("Play_Safe__Lose", minigameLauncherObject);
     }
 
     void SucceedGame()
@@ -259,6 +267,7 @@ public class SafeGame : MonoBehaviour {
         CurrentState = GameState.completed;
         InputActive = false;
         Timer.Pause();
+        AkSoundEngine.PostEvent("Play_Safe__Win", minigameLauncherObject);
     }
 
     float TickToRotation(int tick)

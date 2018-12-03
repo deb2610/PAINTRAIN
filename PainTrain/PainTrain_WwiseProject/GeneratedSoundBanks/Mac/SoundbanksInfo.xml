@@ -21,13 +21,36 @@
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<IncludedEvents>
+				<Event Id="2335830713" Name="Play_Safe___Lose" ObjectPath="\Events\Default Work Unit\Play_Safe___Lose"/>
+				<Event Id="551594628" Name="Play_Safe___Win" ObjectPath="\Events\Default Work Unit\Play_Safe___Win"/>
+				<Event Id="1146097364" Name="Play_SafeCracking_Vertical" ObjectPath="\Events\Default Work Unit\Play_SafeCracking_Vertical"/>
 				<Event Id="1000465501" Name="Play_TItle_Event" ObjectPath="\Events\Default Work Unit\Play_TItle_Event"/>
 				<Event Id="3355541963" Name="Stop_Title_Event" ObjectPath="\Events\Default Work Unit\Stop_Title_Event" MaxAttenuation="0.000000"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
+				<File Id="103430633" Language="SFX">
+					<ShortName>Safe - Win.wav</ShortName>
+					<Path>SFX\Safe - Win_8956FC97.wem</Path>
+				</File>
+				<File Id="351237703" Language="SFX">
+					<ShortName>Loop 1.wav</ShortName>
+					<Path>SFX\Loop 1_8956FC97.wem</Path>
+				</File>
+				<File Id="573199842" Language="SFX">
+					<ShortName>Loop 2.wav</ShortName>
+					<Path>SFX\Loop 2_8956FC97.wem</Path>
+				</File>
+				<File Id="575963711" Language="SFX">
+					<ShortName>Safe - Lose.wav</ShortName>
+					<Path>SFX\Safe - Lose_8956FC97.wem</Path>
+				</File>
 				<File Id="794355071" Language="SFX">
 					<ShortName>Pain Train- Delivery.wav</ShortName>
 					<Path>SFX\Pain Train- Delivery_56D34C19.wem</Path>
+				</File>
+				<File Id="806558286" Language="SFX">
+					<ShortName>Loop 3.wav</ShortName>
+					<Path>SFX\Loop 3_8956FC97.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
