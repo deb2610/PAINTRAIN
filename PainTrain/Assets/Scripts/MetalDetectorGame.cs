@@ -25,7 +25,13 @@ public class MetalDetectorGame : MonoBehaviour {
     public GameObject offLight;
     public GameObject yellowLight;
 
+    public GameObject redCross;
+    public GameObject yellowCross;
+    public GameObject yellowCircle;
+    public GameObject greenCircle;
+
     public GameObject cameraSprite;
+    public GameObject crosshairSprite;
 
     public int gameTime = 30;
 
@@ -67,7 +73,7 @@ public class MetalDetectorGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (! started)
+        if (!started)
         {
             return;
         }
@@ -105,12 +111,11 @@ public class MetalDetectorGame : MonoBehaviour {
                 backCam.Pause();
             }
         }
-        else
-        {
-            int numSteps = (int)Mathf.Floor(angle / tolerance);
-            VibrationPattern(numSteps);
-            BlinkPattern(numSteps);
-        }
+
+        int numSteps = (int)Mathf.Floor(angle / tolerance);
+        UpdateCrosshairs(numSteps);
+        VibrationPattern(numSteps);
+        BlinkPattern(numSteps);
     }
 
     void CheckFail()
@@ -175,6 +180,38 @@ public class MetalDetectorGame : MonoBehaviour {
         else
         {
             nextVibration = -1;
+        }
+    }
+
+    void UpdateCrosshairs(int steps)
+    {
+        if (steps == 0)
+        {
+            redCross.SetActive(false);
+            yellowCross.SetActive(false);
+            yellowCircle.SetActive(false);
+            greenCircle.SetActive(true);
+        }
+        else if (steps == 1)
+        {
+            redCross.SetActive(false);
+            yellowCross.SetActive(false);
+            yellowCircle.SetActive(true);
+            greenCircle.SetActive(false);
+        }
+        else if (steps == 2)
+        {
+            redCross.SetActive(false);
+            yellowCross.SetActive(true);
+            yellowCircle.SetActive(false);
+            greenCircle.SetActive(false);
+        }
+        else
+        {
+            redCross.SetActive(true);
+            yellowCross.SetActive(false);
+            yellowCircle.SetActive(false);
+            greenCircle.SetActive(false);
         }
     }
 
