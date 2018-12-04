@@ -7,9 +7,11 @@ public class MinigameLauncher : MonoBehaviour {
 
     public Button safeCrackingButton;
     public Button hackingButton;
+    public Button metalDetectorButton;
     public Button homeButton;
     public GameObject safeGame;
     public GameObject hackingGame;
+    public GameObject metalDetectorGame;
     public GameObject appScreenCanvas;
 
 	// Use this for initialization
@@ -17,6 +19,7 @@ public class MinigameLauncher : MonoBehaviour {
         homeButton.onClick.AddListener(GoHome);
         safeCrackingButton.onClick.AddListener(LaunchSafeGame);
         hackingButton.onClick.AddListener(LaunchHackingGame);
+        metalDetectorButton.onClick.AddListener(LaunchMetalDetector);
 	}
 	
 	// Update is called once per frame
@@ -39,10 +42,17 @@ public class MinigameLauncher : MonoBehaviour {
         HideAppScreen();
     }
 
+    void LaunchMetalDetector()
+    {
+        metalDetectorGame.SetActive(true);
+        HideAppScreen();
+    }
+
     public void HideAppScreen()
     {
         safeCrackingButton.gameObject.SetActive(false);
         hackingButton.gameObject.SetActive(false);
+        metalDetectorButton.gameObject.SetActive(false);
         homeButton.gameObject.SetActive(false);
     }
 
@@ -50,6 +60,7 @@ public class MinigameLauncher : MonoBehaviour {
     {
         safeCrackingButton.gameObject.SetActive(true);
         hackingButton.gameObject.SetActive(true);
+        metalDetectorButton.gameObject.SetActive(true);
         homeButton.gameObject.SetActive(false);
     }
 
@@ -62,6 +73,7 @@ public class MinigameLauncher : MonoBehaviour {
     {
         safeGame.SetActive(false);
         hackingGame.SetActive(false);
+        metalDetectorGame.SetActive(false);
         ShowAppScreen();
     }
 }
