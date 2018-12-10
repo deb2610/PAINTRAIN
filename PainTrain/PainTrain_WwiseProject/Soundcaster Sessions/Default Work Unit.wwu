@@ -6,26 +6,29 @@
 				<SoundcasterSession Name="test" ID="{9EC240A8-9A59-4203-8668-8EED19BC15B2}">
 					<ModuleList>
 						<Module>
-							<ObjectRef Name="Play_TItle_Event" ID="{444A836A-7E6A-41BD-8F97-4FD4388006A8}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}"/>
+							<ObjectRef Name="Title_Resume" ID="{444A836A-7E6A-41BD-8F97-4FD4388006A8}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}"/>
 							<Position X="0" Y="0"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="Stop_Title_Event" ID="{9D74CC13-763D-4A69-AC9B-F4E0367F636B}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}"/>
+							<ObjectRef Name="Title_Pause" ID="{9D74CC13-763D-4A69-AC9B-F4E0367F636B}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}"/>
 							<Position X="1" Y="0"/>
 						</Module>
 					</ModuleList>
 					<RTPCValueList ShowAll="true">
 						<RTPCValue>
 							<GameParameterRef Name="SafeAngleDistance" ID="{5BB8DD77-FEA5-42D4-82E3-E96A74754722}"/>
-							<Value>8.03452247292379E-312</Value>
+							<Value>145.950413223141</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="SafeState" ID="{28EF5B6F-D49B-4CA6-AB2E-1BBCE47449BF}"/>
-							<Value>2.37734886059574</Value>
+							<Value>1.99259259259259</Value>
 						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true"/>
-					<CurrentSwitchList ShowAll="true"/>
+					<CurrentSwitchList ShowAll="true">
+						<CurrentSwitchRef Name="completed" ID="{90C85416-493F-4330-AEFE-513F67F0D1F8}"/>
+						<CurrentSwitchRef Name="Towards" ID="{E31C5F8B-6483-4372-A70C-354E588EFF4A}"/>
+					</CurrentSwitchList>
 				</SoundcasterSession>
 			</ChildrenList>
 		</WorkUnit>

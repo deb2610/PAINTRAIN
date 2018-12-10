@@ -3,49 +3,53 @@
 	<Events>
 		<WorkUnit Name="Default Work Unit" ID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" PersistMode="Standalone">
 			<ChildrenList>
-				<Event Name="Play_TItle_Event" ID="{444A836A-7E6A-41BD-8F97-4FD4388006A8}">
+				<Event Name="Title_Resume" ID="{444A836A-7E6A-41BD-8F97-4FD4388006A8}">
 					<ChildrenList>
 						<Action Name="" ID="{A3236E20-237C-414D-96CF-7EC0E2B8AA4B}" ShortID="254193088">
 							<PropertyList>
-								<Property Name="ActionType" Type="int16" Value="1"/>
+								<Property Name="ActionType" Type="int16" Value="12"/>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Pain Train- Delivery" ID="{D0BA8535-F670-49A2-8857-3ED29FD7C5C2}" WorkUnitID="{21A43F00-AA82-4614-8F5A-25CAAE4F382F}"/>
+									<ObjectRef Name="Title Playlist" ID="{298A29D3-E573-4B04-BF7C-70341D8A43EC}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Stop_Title_Event" ID="{9D74CC13-763D-4A69-AC9B-F4E0367F636B}">
+				<Event Name="Title_Pause" ID="{9D74CC13-763D-4A69-AC9B-F4E0367F636B}">
 					<ChildrenList>
 						<Action Name="" ID="{F2EFDC78-732C-45D2-8BD1-BF149CCD8D94}" ShortID="1030237147">
 							<PropertyList>
-								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="ActionType" Type="int16" Value="12"/>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+								<Property Name="Volume" Type="Real64" Value="-200"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Pain Train- Delivery" ID="{D0BA8535-F670-49A2-8857-3ED29FD7C5C2}" WorkUnitID="{21A43F00-AA82-4614-8F5A-25CAAE4F382F}"/>
+									<ObjectRef Name="Title Playlist" ID="{298A29D3-E573-4B04-BF7C-70341D8A43EC}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_SafeCracking_Vertical" ID="{649E04C7-6150-4E7E-984E-71A5D7D31717}">
+				<Event Name="Safe_Music" ID="{649E04C7-6150-4E7E-984E-71A5D7D31717}">
 					<ChildrenList>
 						<Action Name="" ID="{EC597465-05C8-4A5B-B0D9-A2730D2A6022}" ShortID="583717751">
 							<PropertyList>
 								<Property Name="ActionType" Type="int16" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="SafeCracking Vertical Mix Container" ID="{F3BE1B31-D3F7-4DDE-8F49-944A8ECCB914}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+									<ObjectRef Name="SafeCracking Horizontal Mix Container" ID="{2CAF5CDC-1589-49EA-B2C5-00D9DC209651}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_Safe___Win" ID="{10F232B0-195A-4CD3-A3C4-DC20B1ED1F14}">
+				<Event Name="Safe_Win" ID="{10F232B0-195A-4CD3-A3C4-DC20B1ED1F14}">
 					<ChildrenList>
 						<Action Name="" ID="{7D1B1718-5AE4-4B60-997F-5BA62FC7C77D}" ShortID="606505236">
 							<PropertyList>
@@ -53,11 +57,21 @@
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="SafeCracking Vertical Mix Container" ID="{F3BE1B31-D3F7-4DDE-8F49-944A8ECCB914}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+									<ObjectRef Name="SafeCracking Horizontal Mix Container" ID="{2CAF5CDC-1589-49EA-B2C5-00D9DC209651}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
-						<Action Name="" ID="{BE08AB56-EA75-4C59-BA81-0FBD69F73252}" ShortID="120433244">
+						<Action Name="" ID="{919D8EFE-5EE5-4396-BD67-FB64F1F55B42}" ShortID="1021564757">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SafeCracking SFX System Container" ID="{26F63667-BDFD-4AC9-A167-E88518C64761}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{CECF1C17-8FA2-4E96-8E0B-75A3B64BD8AE}" ShortID="588171481">
 							<PropertyList>
 								<Property Name="ActionType" Type="int16" Value="1"/>
 							</PropertyList>
@@ -69,7 +83,7 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_Safe___Lose" ID="{59FEDD6B-379B-4A8E-A73D-08DD085E4C78}">
+				<Event Name="Safe_Lose" ID="{59FEDD6B-379B-4A8E-A73D-08DD085E4C78}">
 					<ChildrenList>
 						<Action Name="" ID="{47A137C0-160F-43E8-AD5E-88F7103C74AF}" ShortID="21022521">
 							<PropertyList>
@@ -77,17 +91,86 @@
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="SafeCracking Vertical Mix Container" ID="{F3BE1B31-D3F7-4DDE-8F49-944A8ECCB914}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+									<ObjectRef Name="SafeCracking Horizontal Mix Container" ID="{2CAF5CDC-1589-49EA-B2C5-00D9DC209651}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
-						<Action Name="" ID="{0894399C-4D72-4107-ADB2-49388C0C326D}" ShortID="455955314">
+						<Action Name="" ID="{74C4C549-12FC-47C1-B296-EB10415E88FD}" ShortID="934080981">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SafeCracking SFX System Container" ID="{26F63667-BDFD-4AC9-A167-E88518C64761}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{8A4D957B-D32A-4342-B4CA-945DCE7E272F}" ShortID="359842502">
 							<PropertyList>
 								<Property Name="ActionType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Safe - Lose" ID="{EEB5D8F4-2846-4A25-BC76-166EC16D9879}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Title_Start" ID="{0CFE41BF-901D-40AF-973D-9D27250912BE}">
+					<ChildrenList>
+						<Action Name="" ID="{91865FC7-FD1D-43D0-87CB-5B900291AD3F}" ShortID="65908745">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Title Playlist" ID="{298A29D3-E573-4B04-BF7C-70341D8A43EC}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Safe_SFX" ID="{A38820AA-C5D8-427C-A530-8E8B913DB176}">
+					<ChildrenList>
+						<Action Name="" ID="{341F58A9-2B9B-44E3-A74A-C96A09460660}" ShortID="97124711">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SafeCracking SFX System Container" ID="{26F63667-BDFD-4AC9-A167-E88518C64761}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Safe_SFX_Pause" ID="{6E8E8D12-F0A5-4D5E-A281-ED3D872FA5C8}">
+					<ChildrenList>
+						<Action Name="" ID="{1C2BD4F3-F875-41AD-AC1F-AF4392D9612C}" ShortID="536527133">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="12"/>
+								<Property Name="Volume" Type="Real64" Value="-200"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SafeCracking SFX System Container" ID="{26F63667-BDFD-4AC9-A167-E88518C64761}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Safe_SFX_Resume" ID="{2ADEBA53-7311-40A3-84D4-84B3BCDF3749}">
+					<ChildrenList>
+						<Action Name="" ID="{B3F51D0D-33DA-4229-80F2-2A81711ADFA4}" ShortID="1006646291">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="12"/>
+								<Property Name="FadeTime" Type="Real64" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SafeCracking SFX System Container" ID="{26F63667-BDFD-4AC9-A167-E88518C64761}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

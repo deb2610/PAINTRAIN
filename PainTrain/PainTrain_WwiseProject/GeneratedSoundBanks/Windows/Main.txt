@@ -1,18 +1,32 @@
 Event	ID	Name			Wwise Object Path	Notes
-	551594628	Play_Safe___Win			\Default Work Unit\Play_Safe___Win	
-	1000465501	Play_TItle_Event			\Default Work Unit\Play_TItle_Event	
-	1146097364	Play_SafeCracking_Vertical			\Default Work Unit\Play_SafeCracking_Vertical	
-	2335830713	Play_Safe___Lose			\Default Work Unit\Play_Safe___Lose	
-	3355541963	Stop_Title_Event			\Default Work Unit\Stop_Title_Event	
+	402072766	Safe_SFX			\Default Work Unit\Safe_SFX	
+	545032697	Title_Resume			\Default Work Unit\Title_Resume	
+	929449964	Safe_SFX_Resume			\Default Work Unit\Safe_SFX_Resume	
+	988597997	Safe_Win			\Default Work Unit\Safe_Win	
+	1633406166	Safe_Lose			\Default Work Unit\Safe_Lose	
+	1803940862	Title_Pause			\Default Work Unit\Title_Pause	
+	2202628197	Safe_SFX_Pause			\Default Work Unit\Safe_SFX_Pause	
+	2631576012	Title_Start			\Default Work Unit\Title_Start	
+	4014672470	Safe_Music			\Default Work Unit\Safe_Music	
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	3111621141	SafeState			\Default Work Unit\SafeState	
+	4122000434	SafeAngleDistance			\Default Work Unit\SafeAngleDistance	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	103430633	Safe - Win	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Safe - Win_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\SafeCracking Stingers Playlist Container\Safe - Win\Safe - Win		642664
-	351237703	Loop 1	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Loop 1_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\SafeCracking Vertical Mix Container\SafeCracking Vertical Mix Segment\Loop 1		2419264
-	573199842	Loop 2	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Loop 2_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\SafeCracking Vertical Mix Container\SafeCracking Vertical Mix Segment\Loop 2		2419264
-	575963711	Safe - Lose	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Safe - Lose_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\SafeCracking Stingers Playlist Container\Safe - Lose\Safe - Lose		453664
-	794355071	Pain Train- Delivery	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Pain Train- Delivery_56D34C19.wem		\Actor-Mixer Hierarchy\Default Work Unit\Pain Train- Delivery		17236864
-	806558286	Loop 3	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Loop 3_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\SafeCracking Vertical Mix Container\SafeCracking Vertical Mix Segment\Loop 3		2419264
+	94109977	Segment 2 Coda	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Segment 2 Coda_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\Title Playlist\Segment 2 Coda\Segment 2 Coda		1209664
+	103430633	Safe - Win	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Safe - Win_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\SafeCracking Horizontal Mix Container\Win\Safe - Win\Safe - Win		642664
+	351237703	Loop 1	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Loop 1_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\SafeCracking Horizontal Mix Container\Loop 1\Loop 1\Loop 1		2419264
+	367845554	First Segment	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\First Segment_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\Title Playlist\First Segment\First Segment		3931264
+	415225912	Drum fill	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Drum fill_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\Title Playlist\Drum fill\Drum fill		302464
+	433766138	Main Body Loop	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Main Body Loop_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\Title Playlist\Main Body Loop\Main Body Loop		10281664
+	496407075	Safe - ClickTo	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Safe - ClickTo_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\SafeCracking SFX System Container\Safe - To\Safe - ClickTo\Safe - ClickTo		151264
+	547796510	Intro Stinger, Intro Drums	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Intro Stinger, Intro Drums_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\Title Playlist\Intro Stinger, Intro Drums\Intro Stinger, Intro Drums		5140864
+	562553831	Safe - Drums	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Safe - Drums_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\SafeCracking Horizontal Mix Container\Drums\Safe - Drums\Safe - Drums		2419264
+	573199842	Loop 2	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Loop 2_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\SafeCracking Horizontal Mix Container\Loop 2\Loop 2\Loop 2		2419264
+	575963711	Safe - Lose	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Safe - Lose_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\SafeCracking Horizontal Mix Container\Lose\Safe - Lose\Safe - Lose		453664
+	587945794	End Stinger	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\End Stinger_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\Title Playlist\End Stinger\End Stinger		1512064
+	806558286	Loop 3	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Loop 3_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\SafeCracking Horizontal Mix Container\Loop 3\Loop 3\Loop 3		2419264
+	867071709	Safe - ClickAway	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Safe - ClickAway_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\SafeCracking SFX System Container\Safe - Away\Safe - ClickAway\Safe - ClickAway		151264
+	915794175	Second Segment	C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Windows\SFX\Second Segment_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\Title Playlist\Second Segment\Second Segment		6048064
 

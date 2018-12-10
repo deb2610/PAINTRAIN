@@ -24,19 +24,14 @@ public class MinigameLauncher : MonoBehaviour {
 		
 	}
 
-    void LaunchGameAKCallback()
-    {
-        AkSoundEngine.PostEvent("Stop_Title_Event", gameObject);
-    }
-
     void LaunchSafeGame()
     {
         safeGame.SetActive(true);
         SafeGame game = safeGame.transform.Find("Dial").gameObject.GetComponent<SafeGame>();
         game.NewGame();
         HideAppScreen();
-        LaunchGameAKCallback();
-        AkSoundEngine.PostEvent("Play_SafeCracking_Vertical", gameObject);
+        GameObject.Find("AudioHandler").GetComponent<AkPoster>().PostAkEvent("Safe_Music");
+        
     }
     void LaunchHackingGame()
     {
@@ -44,7 +39,6 @@ public class MinigameLauncher : MonoBehaviour {
         //SafeGame game = safeGame.transform.Find("Dial").gameObject.GetComponent<SafeGame>();
         //game.NewGame();
         HideAppScreen();
-        LaunchGameAKCallback();
     }
 
     public void HideAppScreen()
@@ -52,6 +46,7 @@ public class MinigameLauncher : MonoBehaviour {
         safeCrackingButton.gameObject.SetActive(false);
         hackingButton.gameObject.SetActive(false);
         homeButton.gameObject.SetActive(false);
+        GameObject.Find("AudioHandler").GetComponent<AkPoster>().PostAkEvent("Title_Pause");
     }
 
     public void ShowAppScreen()
@@ -59,6 +54,7 @@ public class MinigameLauncher : MonoBehaviour {
         safeCrackingButton.gameObject.SetActive(true);
         hackingButton.gameObject.SetActive(true);
         homeButton.gameObject.SetActive(false);
+        GameObject.Find("AudioHandler").GetComponent<AkPoster>().PostAkEvent("Title_Resume");
     }
 
     public void ShowHomeButton()

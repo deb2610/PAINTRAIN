@@ -5,12 +5,18 @@
 			<ChildrenList>
 				<SoundBank Name="Main" ID="{661CCBAE-D03C-4E51-B223-F88C9AAA2062}">
 					<ObjectInclusionList>
-						<ObjectRef Name="Play_TItle_Event" ID="{444A836A-7E6A-41BD-8F97-4FD4388006A8}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="Stop_Title_Event" ID="{9D74CC13-763D-4A69-AC9B-F4E0367F636B}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="Play_Safe___Lose" ID="{59FEDD6B-379B-4A8E-A73D-08DD085E4C78}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="Play_Safe___Win" ID="{10F232B0-195A-4CD3-A3C4-DC20B1ED1F14}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="SafeCracking Vertical Mix Container" ID="{F3BE1B31-D3F7-4DDE-8F49-944A8ECCB914}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="Play_SafeCracking_Vertical" ID="{649E04C7-6150-4E7E-984E-71A5D7D31717}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Safe_SFX_Resume" ID="{2ADEBA53-7311-40A3-84D4-84B3BCDF3749}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Title_Start" ID="{0CFE41BF-901D-40AF-973D-9D27250912BE}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Title_Resume" ID="{444A836A-7E6A-41BD-8F97-4FD4388006A8}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Safe_SFX" ID="{A38820AA-C5D8-427C-A530-8E8B913DB176}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="SafeCracking Horizontal Mix Container" ID="{2CAF5CDC-1589-49EA-B2C5-00D9DC209651}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Title_Pause" ID="{9D74CC13-763D-4A69-AC9B-F4E0367F636B}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Safe_Lose" ID="{59FEDD6B-379B-4A8E-A73D-08DD085E4C78}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="SafeCracking SFX System Container" ID="{26F63667-BDFD-4AC9-A167-E88518C64761}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Title Playlist" ID="{298A29D3-E573-4B04-BF7C-70341D8A43EC}" WorkUnitID="{69EF4AD7-67E9-4CC2-9504-68333F90A699}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Safe_Win" ID="{10F232B0-195A-4CD3-A3C4-DC20B1ED1F14}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Safe_SFX_Pause" ID="{6E8E8D12-F0A5-4D5E-A281-ED3D872FA5C8}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Safe_Music" ID="{649E04C7-6150-4E7E-984E-71A5D7D31717}" WorkUnitID="{CF31C20A-F358-430B-AE93-4811FE5B6858}" Filter="7" Origin="Manual"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

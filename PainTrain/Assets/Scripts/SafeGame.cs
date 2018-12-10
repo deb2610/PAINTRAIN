@@ -21,6 +21,8 @@ public class SafeGame : MonoBehaviour {
     public GameObject minigameLauncherObject;
     private MinigameLauncher minigameLauncher;
 
+    private AkPoster akPoster;
+
     public GameObject timerGameObject;
     private Timer Timer;
 
@@ -71,6 +73,9 @@ public class SafeGame : MonoBehaviour {
         Timer = timerGameObject.GetComponent<Timer>();
 
         NewGame();
+        akPoster = GameObject.Find("AudioHandler").GetComponent<AkPoster>();
+        akPoster.SetRTPC("SafeState", (float)CurrentState);
+        akPoster.SetRTPC("SafeAngleDistance", AngleAwayFromCorrect);
     }
 	
 	// Update is called once per frame
@@ -88,12 +93,6 @@ public class SafeGame : MonoBehaviour {
         }
         HandleGameFinsihed();
 	}
-
-    void FixedUpdate()
-    {
-        AkSoundEngine.SetRTPCValue("SafeState", (float)CurrentState);
-        AkSoundEngine.SetRTPCValue("SafeAngleDistance", AngleAwayFromCorrect);
-    }
 
     void ProcessInput()
     {
@@ -144,6 +143,7 @@ public class SafeGame : MonoBehaviour {
         float currentRot = ClampAngle(transform.eulerAngles.z - 90);
 
         AngleAwayFromCorrect = Mathf.Abs(CurrentGoal - currentRot);
+        akPoster.SetRTPC("SafeAngleDistance", AngleAwayFromCorrect);
 
         // Check success
         if (GetCurrentTick() == SafeCombo[index])
@@ -231,6 +231,7 @@ public class SafeGame : MonoBehaviour {
                 Reset();
                 transform.eulerAngles = Vector3.zero;
                 InputActive = true;
+                akPoster.PostAkEvent("Safe_SFX_Resume");
             }
             return true;
         }
@@ -239,6 +240,7 @@ public class SafeGame : MonoBehaviour {
 
     void FailGame()
     {
+        akPoster.PostAkEvent("Safe_SFX_Pause");
         timeOfLastFail = Time.time;
         rotationAtFail = transform.eulerAngles.z;
         offLight.SetActive(false);
@@ -246,7 +248,6 @@ public class SafeGame : MonoBehaviour {
         CurrentState = GameState.failing;
         InputActive = false;
         Vibrate(failBuzzDuration);
-        AkSoundEngine.PostEvent("Play_Safe__Lose", minigameLauncherObject);
     }
 
     void EndGame()
@@ -257,7 +258,7 @@ public class SafeGame : MonoBehaviour {
         InputActive = false;
         Vibrate(failBuzzDuration);
         gameComplete = Time.time;
-        AkSoundEngine.PostEvent("Play_Safe__Lose", minigameLauncherObject);
+        akPoster.PostAkEvent("Safe_Lose");
     }
 
     void SucceedGame()
@@ -267,7 +268,7 @@ public class SafeGame : MonoBehaviour {
         CurrentState = GameState.completed;
         InputActive = false;
         Timer.Pause();
-        AkSoundEngine.PostEvent("Play_Safe__Win", minigameLauncherObject);
+        akPoster.PostAkEvent("Safe_Win");
     }
 
     float TickToRotation(int tick)
@@ -391,6 +392,7 @@ public class SafeGame : MonoBehaviour {
         instructionCanvas.SetActive(false);
         InputActive = true;
         Timer.Go();
+        akPoster.PostAkEvent("Safe_SFX");
     }
 
     // Use this method to set active the game objects that need to be set active but are shared across minigames

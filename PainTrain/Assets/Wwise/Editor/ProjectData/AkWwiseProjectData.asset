@@ -27,7 +27,7 @@ MonoBehaviour:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 6dc21f4e9a0ca740a4577f1598cdde5e
-    m_lastTime: -8586578043601677098
+    m_lastTime: -8586575006771007113
     List:
     - name: Main
       guid: aecb1c663cd0514eb223f88c9aaa2062
@@ -42,7 +42,7 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 0ac231cf58f30b43ae934811fe5b6858
-    m_lastTime: -8586578043838726277
+    m_lastTime: -8586575007035735365
     List:
     - name: Play_Safe___Lose
       guid: 6bddfe599b378e4aa73d08dd085e4c78
@@ -92,6 +92,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: Start_Title_Event
+      guid: bf41fe0c1d90af40973d9d27250912be
+      id: 711839237
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Start_Title_Event
+        ObjectType: 3
+      Path: Default Work Unit\Start_Title_Event
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: Stop_Title_Event
       guid: 13cc749d3d76694aac9bf4e0367f636b
       id: 3355541963
@@ -138,8 +150,82 @@ MonoBehaviour:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 1d5bc4cf3bf6dc4dac9ae267335adb70
-    m_lastTime: -8586578306701141594
-    List: []
+    m_lastTime: -8586575016763303864
+    List:
+    - name: Safe_Cracking_Dial
+      guid: b2540373ed30694d86163d29d1899190
+      id: 467536876
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Safe_Cracking_Dial
+        ObjectType: 11
+      Path: Default Work Unit\Safe_Cracking_Dial
+      values:
+      - name: Away
+        guid: 97056bb6962fda428463b36c75cb9e86
+        id: 3552757243
+        PathAndIcons:
+        - ElementName: Away
+          ObjectType: 10
+      - name: Near
+        guid: b728e36f0a2da44a9e8d7f786aa27f30
+        id: 1133794587
+        PathAndIcons:
+        - ElementName: Near
+          ObjectType: 10
+      - name: Towards
+        guid: 8b5f1ce383647243a70c354e588eff4a
+        id: 3487645007
+        PathAndIcons:
+        - ElementName: Towards
+          ObjectType: 10
+    - name: Safe_Cracking_GameState
+      guid: 1aa1233e1b3a0a4999319d573ab410d5
+      id: 2363991239
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Safe_Cracking_GameState
+        ObjectType: 11
+      Path: Default Work Unit\Safe_Cracking_GameState
+      values:
+      - name: completed
+        guid: 1654c8903f493043aefe513f67f0d1f8
+        id: 94054856
+        PathAndIcons:
+        - ElementName: completed
+          ObjectType: 10
+      - name: failed
+        guid: 5d31f0c4fcb76f4ea40057788511966d
+        id: 1655200910
+        PathAndIcons:
+        - ElementName: failed
+          ObjectType: 10
+      - name: failing
+        guid: 0fadcf70456d23409c0fd9e44e474bcc
+        id: 3538756063
+        PathAndIcons:
+        - ElementName: failing
+          ObjectType: 10
+      - name: firstNumber
+        guid: 2b76ddaf887b014585d524da5ba8bd14
+        id: 777887806
+        PathAndIcons:
+        - ElementName: firstNumber
+          ObjectType: 10
+      - name: secondNumber
+        guid: 07387b4a1ac6ed408da690111a750421
+        id: 779465698
+        PathAndIcons:
+        - ElementName: secondNumber
+          ObjectType: 10
+      - name: thirdNumber
+        guid: e7529d98336b274bb9096d7711f7d033
+        id: 3765904019
+        PathAndIcons:
+        - ElementName: thirdNumber
+          ObjectType: 10
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     ParentPhysicalPath: 
@@ -151,6 +237,8 @@ MonoBehaviour:
   - /PainTrain_WwiseProject/Events
   - /PainTrain_WwiseProject/Events/Default Work Unit
   - /PainTrain_WwiseProject/SoundBanks
-  - /PainTrain_WwiseProject/SoundBanks/Default Work Unit
+  - /PainTrain_WwiseProject/Switches
+  - /PainTrain_WwiseProject/Switches/Default Work Unit
+  - /PainTrain_WwiseProject/Switches/Default Work Unit/Safe_Cracking_GameState
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

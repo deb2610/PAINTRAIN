@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b6464822898fb47b1215d3a8915479, type: 3}
   m_Name: 444A836A-7E6A-41BD-8F97-4FD4388006A8
   m_EditorClassIdentifier: 
-  objectName: Play_TItle_Event
-  id: 1000465501
+  objectName: Title_Resume
+  id: 545032697
   guid: 444A836A-7E6A-41BD-8F97-4FD4388006A8
