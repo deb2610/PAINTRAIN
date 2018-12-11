@@ -1,0 +1,22 @@
+Switch Group	ID	Name			Wwise Object Path	Notes
+	467536876	Safe_Cracking_Dial			\Default Work Unit\Safe_Cracking_Dial	
+	2363991239	Safe_Cracking_GameState			\Default Work Unit\Safe_Cracking_GameState	
+
+Switch	ID	Name	Switch Group			Notes
+	1133794587	Near	Safe_Cracking_Dial			
+	3487645007	Towards	Safe_Cracking_Dial			
+	3552757243	Away	Safe_Cracking_Dial			
+	94054856	completed	Safe_Cracking_GameState			
+	777887806	firstNumber	Safe_Cracking_GameState			
+	779465698	secondNumber	Safe_Cracking_GameState			
+	1655200910	failed	Safe_Cracking_GameState			
+	3538756063	failing	Safe_Cracking_GameState			
+	3765904019	thirdNumber	Safe_Cracking_GameState			
+
+Audio Bus	ID	Name			Wwise Object Path	Notes
+	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+
+Audio Devices	ID	Name	Type				Notes
+	2317455096	No_Output	No Output			
+	3859886410	System	System			
+

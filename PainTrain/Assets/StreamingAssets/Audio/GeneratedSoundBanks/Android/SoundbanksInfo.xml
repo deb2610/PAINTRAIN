@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Android" BasePlatform="Android" SchemaVersion="11" SoundbankVersion="132">
+	<RootPaths>
+		<ProjectRoot>C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\.cache\Android\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\GeneratedSoundBanks\Android\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\dsmit\Documents\Unity\PAINTRAIN-master\PainTrain\PainTrain_WwiseProject\GeneratedSoundBanks\Android</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="3161908922" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
+			<ShortName>Main</ShortName>
+			<Path>Main.bnk</Path>
+			<IncludedEvents>
+				<Event Id="1633406166" Name="Safe_Lose" ObjectPath="\Events\Default Work Unit\Safe_Lose"/>
+				<Event Id="4014672470" Name="Safe_Music" ObjectPath="\Events\Default Work Unit\Safe_Music"/>
+				<Event Id="402072766" Name="Safe_SFX" ObjectPath="\Events\Default Work Unit\Safe_SFX"/>
+				<Event Id="2202628197" Name="Safe_SFX_Pause" ObjectPath="\Events\Default Work Unit\Safe_SFX_Pause" MaxAttenuation="0.000000"/>
+				<Event Id="929449964" Name="Safe_SFX_Resume" ObjectPath="\Events\Default Work Unit\Safe_SFX_Resume" MaxAttenuation="0.000000"/>
+				<Event Id="988597997" Name="Safe_Win" ObjectPath="\Events\Default Work Unit\Safe_Win"/>
+				<Event Id="1803940862" Name="Title_Pause" ObjectPath="\Events\Default Work Unit\Title_Pause" MaxAttenuation="0.000000"/>
+				<Event Id="545032697" Name="Title_Resume" ObjectPath="\Events\Default Work Unit\Title_Resume" MaxAttenuation="0.000000"/>
+				<Event Id="2631576012" Name="Title_Start" ObjectPath="\Events\Default Work Unit\Title_Start"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="94109977" Language="SFX">
+					<ShortName>Segment 2 Coda.wav</ShortName>
+					<Path>SFX\Segment 2 Coda_8956FC97.wem</Path>
+				</File>
+				<File Id="103430633" Language="SFX">
+					<ShortName>Safe - Win.wav</ShortName>
+					<Path>SFX\Safe - Win_8956FC97.wem</Path>
+				</File>
+				<File Id="351237703" Language="SFX">
+					<ShortName>Loop 1.wav</ShortName>
+					<Path>SFX\Loop 1_8956FC97.wem</Path>
+				</File>
+				<File Id="367845554" Language="SFX">
+					<ShortName>First Segment.wav</ShortName>
+					<Path>SFX\First Segment_8956FC97.wem</Path>
+				</File>
+				<File Id="415225912" Language="SFX">
+					<ShortName>Drum fill.wav</ShortName>
+					<Path>SFX\Drum fill_8956FC97.wem</Path>
+				</File>
+				<File Id="433766138" Language="SFX">
+					<ShortName>Main Body Loop.wav</ShortName>
+					<Path>SFX\Main Body Loop_8956FC97.wem</Path>
+				</File>
+				<File Id="496407075" Language="SFX">
+					<ShortName>Safe - ClickTo.wav</ShortName>
+					<Path>SFX\Safe - ClickTo_8956FC97.wem</Path>
+				</File>
+				<File Id="547796510" Language="SFX">
+					<ShortName>Intro Stinger, Intro Drums.wav</ShortName>
+					<Path>SFX\Intro Stinger, Intro Drums_8956FC97.wem</Path>
+				</File>
+				<File Id="562553831" Language="SFX">
+					<ShortName>Safe - Drums.wav</ShortName>
+					<Path>SFX\Safe - Drums_8956FC97.wem</Path>
+				</File>
+				<File Id="573199842" Language="SFX">
+					<ShortName>Loop 2.wav</ShortName>
+					<Path>SFX\Loop 2_8956FC97.wem</Path>
+				</File>
+				<File Id="575963711" Language="SFX">
+					<ShortName>Safe - Lose.wav</ShortName>
+					<Path>SFX\Safe - Lose_8956FC97.wem</Path>
+				</File>
+				<File Id="587945794" Language="SFX">
+					<ShortName>End Stinger.wav</ShortName>
+					<Path>SFX\End Stinger_8956FC97.wem</Path>
+				</File>
+				<File Id="806558286" Language="SFX">
+					<ShortName>Loop 3.wav</ShortName>
+					<Path>SFX\Loop 3_8956FC97.wem</Path>
+				</File>
+				<File Id="867071709" Language="SFX">
+					<ShortName>Safe - ClickAway.wav</ShortName>
+					<Path>SFX\Safe - ClickAway_8956FC97.wem</Path>
+				</File>
+				<File Id="915794175" Language="SFX">
+					<ShortName>Second Segment.wav</ShortName>
+					<Path>SFX\Second Segment_8956FC97.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

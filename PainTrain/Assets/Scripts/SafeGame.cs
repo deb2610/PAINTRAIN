@@ -26,7 +26,16 @@ public class SafeGame : MonoBehaviour {
     public GameObject timerGameObject;
     private Timer Timer;
 
-    public GameState CurrentState { get; private set; }
+    private GameState currentState;
+    public GameState CurrentState {
+        get { return currentState; }
+        private set 
+        {
+            if(akPoster != null) akPoster.SetRTPC("SafeState", (float)value);
+            currentState = value;
+        }
+
+    }
     public float AngleAwayFromCorrect { get; private set; }
 
     public GameObject redLight;
